@@ -38,7 +38,7 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Ground
+  - name: Floors
     uniqueID: 150505235
     locked: 0
   - name: Walls
