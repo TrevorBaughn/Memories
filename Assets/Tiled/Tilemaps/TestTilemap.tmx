@@ -4,7 +4,7 @@
   <property name="MatchOutsideMap" type="bool" value="false"/>
   <property name="NoOverlappingOutput" type="bool" value="false"/>
  </properties>
- <tileset firstgid="1" source="../Art/Tilesets/topDownBasic_Tileset.tsx"/>
+ <tileset firstgid="1" source="../Tilesets/topDownBasic_Tileset.tsx"/>
  <layer id="3" name="prototype" width="15" height="15">
   <data encoding="csv">
 1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,
