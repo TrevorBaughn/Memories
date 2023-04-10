@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionPrintToConsole : MonoBehaviour, IInteractable
+public class PrintToConsole : MonoBehaviour, IInteractable
 {
     [SerializeField] private string _text;
 
