@@ -11,6 +11,7 @@ public class KeyboardController : PlayerController
     [SerializeField] private KeyCode moveLeft;
     [SerializeField] private KeyCode moveRight;
     [SerializeField] private KeyCode interact;
+    [SerializeField] private KeyCode pause;
     #endregion KeyCodes
 
     // Start is called before the first frame update
@@ -60,6 +61,11 @@ public class KeyboardController : PlayerController
         if (Input.GetKeyDown(interact))
         {
             pawn.Interact();
+        }
+
+        if (Input.GetKeyDown(pause))
+        {
+            pawn.Pause();
         }
     }
 }

@@ -7,11 +7,13 @@ public class PlayerPawn : Pawn, IKillable
 {
     private PlayerMover _mover;
     private Interaction _interaction;
+    [SerializeField] private PauseGame _pauseSystem;
+
 
     // Start is called before the first frame update
     private void Start()
     {
-        //load mover
+        //load references
         _mover = GetComponent<PlayerMover>();
         _interaction = GetComponentInChildren<Interaction>();
     }
@@ -52,6 +54,12 @@ public class PlayerPawn : Pawn, IKillable
     public void Interact()
     {
         _interaction.Interact();
+    }
+
+    public void Pause()
+    {
+        //Note: Move Elsewhere
+        _pauseSystem.TogglePause();  
     }
 
     /// <summary>
