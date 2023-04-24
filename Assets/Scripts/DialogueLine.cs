@@ -14,22 +14,28 @@ public class DialogueLine : MonoBehaviour
     {
         text = GetComponent<TextMeshProUGUI>();
 
-        //StartCoroutine(Fade(text, 1.0f, true));
-        StartCoroutine(Lerp(this.gameObject, 2.0f, 0.25f, true));
+        StartCoroutine(PlayDialogue());
     }
 
-    public GameObject firstPoint;
-    public GameObject secondPoint;
-
-    public IEnumerator Lerp(GameObject textObject, float duration, float distanceLeeway, bool right)
+    public IEnumerator PlayDialogue()
     {
-        text.horizontalAlignment = right ? HorizontalAlignmentOptions.Left : HorizontalAlignmentOptions.Right;
+        StartCoroutine(Fade(text, 1.5f, true));
+        StartCoroutine(Lerp(this.gameObject, 5.0f, 0.25f, true));
+        yield return new WaitForSeconds(3.5f);
+        StartCoroutine(Fade(text, 1.5f, false));
+    }
+
+
+    private IEnumerator Lerp(GameObject textObject, float duration, float distanceLeeway, bool right)
+    {
+        //text.horizontalAlignment = right ? HorizontalAlignmentOptions.Left : HorizontalAlignmentOptions.Right;
+        text.horizontalAlignment = HorizontalAlignmentOptions.Center;
 
         GameObject leftPoint = pointOne.transform.position.x < pointTwo.transform.position.x ? pointOne : pointTwo;
         GameObject rightPoint = leftPoint == pointOne ? pointTwo : pointOne;
 
-        firstPoint = right ? leftPoint : rightPoint;
-        secondPoint = firstPoint == leftPoint ? rightPoint : leftPoint;
+        GameObject firstPoint = right ? leftPoint : rightPoint;
+        GameObject secondPoint = firstPoint == leftPoint ? rightPoint : leftPoint;
 
         textObject.transform.position = firstPoint.transform.position;
 
@@ -54,7 +60,7 @@ public class DialogueLine : MonoBehaviour
 
     }
 
-    public IEnumerator Fade(TMP_Text tmtext, float speed, bool fadeIn)
+    private IEnumerator Fade(TMP_Text tmtext, float speed, bool fadeIn)
     {
         float R, G, B, A;
 
