@@ -53,3 +53,6 @@ TagManager:
   - name: Player
     uniqueID: 3844389823
     locked: 0
+  - name: Dialogue
+    uniqueID: 3646210519
+    locked: 0
