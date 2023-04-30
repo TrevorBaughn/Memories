@@ -5,46 +5,61 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMover))]
 public class PlayerPawn : Pawn, IKillable
 {
-    private PlayerMover mover;
+    private PlayerMover _mover;
+    private Interaction _interaction;
+    [SerializeField] private PauseGame _pauseSystem;
+
 
     // Start is called before the first frame update
     private void Start()
     {
-        //load mover
-        mover = GetComponent<PlayerMover>();
+        //load references
+        _mover = GetComponent<PlayerMover>();
+        _interaction = GetComponentInChildren<Interaction>();
     }
 
     public void MoveUp()
     {
         //use the mover to move forward if not null
-        if (mover != null)
+        if (_mover != null)
         {
-            mover.MoveForward(moveSpeed);
+            _mover.MoveForward(moveSpeed);
         }
     }
     public void MoveDown()
     {
         //use the mover to move backward if not null
-        if (mover != null)
+        if (_mover != null)
         {
-            mover.MoveForward(-moveSpeed);
+            _mover.MoveForward(-moveSpeed);
         }
     }
     public void MoveRight()
     {
         //use the mover to move backward if not null
-        if (mover != null)
+        if (_mover != null)
         {
-            mover.MoveRight(moveSpeed);
+            _mover.MoveRight(moveSpeed);
         }
     }
     public void MoveLeft()
     {
         //use the mover to move backward if not null
-        if (mover != null)
+        if (_mover != null)
         {
-            mover.MoveRight(-moveSpeed);
+            _mover.MoveRight(-moveSpeed);
         }
+    }
+
+    public void Interact()
+    {
+        _interaction.Interact();
+    }
+
+    public void Pause()
+    {
+        //Note: Move Elsewhere
+        _pauseSystem.TogglePause();  
     }
 
     /// <summary>
