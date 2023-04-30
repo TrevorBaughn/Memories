@@ -26,7 +26,7 @@ public class Interaction : MonoBehaviour
         return _interactableColliders;
     }
 
-    private IInteractable GetClosestInteractable()
+    private GameObject GetClosestInteractable()
     {
 
         HashSet<Collider2D> others = GetInteractableColliders();
@@ -50,7 +50,7 @@ public class Interaction : MonoBehaviour
         {
             if(closestObject.gameObject.GetComponent<IInteractable>() != null)
             {
-                return closestObject.gameObject.GetComponent<IInteractable>();
+                return closestObject.gameObject;
             }
         }
         return null;
@@ -59,12 +59,23 @@ public class Interaction : MonoBehaviour
 
     public void Interact()
     {
-        IInteractable toInteract = GetClosestInteractable();
-     
+        GameObject toInteract = GetClosestInteractable();
+
+        IInteractable[] interactions = { };
         if (toInteract != null)
         {
-            toInteract.OnInteract();
+            interactions = toInteract.GetComponents<IInteractable>();
         }
+            
+
+        foreach(IInteractable interaction in interactions)
+        {
+            if (interaction != null)
+            {
+                interaction.OnInteract();
+            }
+        }
+        
     }
 
     
